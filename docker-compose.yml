@@ -9,6 +9,14 @@ networks:
         - subnet: 172.16.0.0/24
 
 services:
+  auth-database:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.0.1
+
   mail-server:
     image: bytemark/smtp
     restart: always
@@ -16,7 +24,7 @@ services:
       - 025:025
     networks:
       service-network:
-        ipv4_address: 172.16.0.1
+        ipv4_address: 172.16.0.2
 
   email-service:
     build: ./main
@@ -25,4 +33,4 @@ services:
       - 3000:3000
     networks:
       cluster-network:
-        ipv4_address: 172.16.0.2
+        ipv4_address: 172.16.0.3
