@@ -1,0 +1,28 @@
+---
+version: "3"
+networks:
+  service-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.0.0/24
+
+services:
+  mail-server:
+    image: bytemark/smtp
+    restart: always
+    ports:
+      - 025:025
+    networks:
+      service-network:
+        ipv4_address: 172.16.0.1
+
+  email-service:
+    build: ./main
+    image: template-emailer-service:latest
+    ports:
+      - 3000:3000
+    networks:
+      cluster-network:
+        ipv4_address: 172.16.0.2
