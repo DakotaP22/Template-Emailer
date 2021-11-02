@@ -22,8 +22,7 @@ export class WebBeaconService {
   private async logOpenEvent(email_id: string): Promise<void> {
     await new this.eventModel({
       email_id,
-      event_type: 'OPEN',
-      timestamp: Date.now(),
+      events: [{ type: 'OPEN', timestamp: Date.now() }],
     }).save();
   }
 }

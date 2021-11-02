@@ -7,10 +7,7 @@ export class EmailEvent {
   email_id: string;
 
   @Prop()
-  event_type: string;
-
-  @Prop()
-  timestamp: number;
+  events: { type: string; timestamp: number }[];
 }
 
 export type EmailEventDocument = EmailEvent & Document;
