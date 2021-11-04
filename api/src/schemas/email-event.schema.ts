@@ -1,10 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 @Schema()
 export class EmailEvent {
-  @Prop()
-  email_id: string;
+  @Prop({ type: Types.ObjectId, auto: false })
+  _id: string;
 
   @Prop()
   events: { type: string; timestamp: number }[];

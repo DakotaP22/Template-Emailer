@@ -36,8 +36,8 @@ export class TemplateService {
     else throw new AttributeNotFoundException();
   }
 
-  async renderTemplate(id: string, data: any): Promise<string> {
+  async renderTemplate(id: string, data: any): Promise<[string, string]> {
     const template: Template = await this.getTemplate(id);
-    return ejs.render(template.template, data);
+    return [template.subject, ejs.render(template.template, data)];
   }
 }

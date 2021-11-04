@@ -6,8 +6,8 @@ import { WebBeaconService } from 'src/services/web-beacon.service';
 export class BeaconController {
   constructor(private beaconSvc: WebBeaconService) {}
 
-  @Get(':email-id')
-  async getBeacon(@Param('email-id') email_id: string, @Res() res: Response) {
+  @Get(':email')
+  async getBeacon(@Param('email') email_id: string, @Res() res: Response) {
     const filepath = await this.beaconSvc.getBeaconPath(email_id);
     res.sendFile(filepath);
   }
