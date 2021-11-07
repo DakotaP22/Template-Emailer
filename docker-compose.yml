@@ -34,3 +34,12 @@ services:
     networks:
       service-network:
         ipv4_address: 172.16.0.3
+
+  user-interface:
+    build: ./ui
+    image: user-interface:latest
+    ports:
+      - 080:080
+    networks:
+      service-network:
+        ipv4_address: 172.16.0.4
