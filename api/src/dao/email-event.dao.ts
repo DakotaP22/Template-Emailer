@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { DiscoveryModule } from '@nestjs/core';
 import { InjectModel } from '@nestjs/mongoose';
 import { Document, Model } from 'mongoose';
-import { DocumentNotFoundException } from 'src/exceptions/DocumentNotFoundException';
-import { FailedToCreateDocumentException } from 'src/exceptions/FailedToCreateDocumentException';
-import { EmailEvent, EmailEventDocument } from 'src/schemas/email-event.schema';
+import { DocumentNotFoundException } from 'src/model/exceptions/DocumentNotFoundException';
+import { FailedToCreateDocumentException } from 'src/model/exceptions/FailedToCreateDocumentException';
+import { EmailEvent, EmailEventDocument } from 'src/model/schemas/email-event.schema';
 @Injectable()
 export class EmailEventDao {
   constructor(@InjectModel(EmailEvent.name) private model: Model<EmailEventDocument>) {}

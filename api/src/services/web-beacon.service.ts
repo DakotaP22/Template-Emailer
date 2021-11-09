@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { EmailEvent, EmailEventDocument } from 'src/schemas/email-event.schema';
+import { EmailEvent, EmailEventDocument } from 'src/model/schemas/email-event.schema';
 import * as Path from 'path';
 import { EmailEventDao } from 'src/dao/email-event.dao';
 

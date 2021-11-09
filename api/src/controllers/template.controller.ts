@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Res } from '@nestjs/common';
-import { UploadTemplateRequest } from 'src/request/upload-template.request';
-import { Template } from 'src/schemas/template.schema';
+import { UploadTemplateRequest } from 'src/model/request/upload-template.request';
+import { Template } from 'src/model/schemas/template.schema';
 import { TemplateService } from 'src/services/template.service';
 
 @Controller('template')
@@ -22,7 +22,6 @@ export class TemplateController {
 
   @Post(':id/render')
   async renderTemplate(@Param('id') template_id: string, @Body() data: any) {
-    console.log(data);
     return await this.templateSvc.renderTemplate(template_id, data);
   }
 }

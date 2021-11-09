@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { DocumentNotFoundException } from 'src/exceptions/DocumentNotFoundException';
-import { FailedToCreateDocumentException } from 'src/exceptions/FailedToCreateDocumentException';
-import { IdTakenException } from 'src/exceptions/IdTakenException';
-import { Email, EmailDocument } from 'src/schemas/email.schema';
+import { DocumentNotFoundException } from 'src/model/exceptions/DocumentNotFoundException';
+import { FailedToCreateDocumentException } from 'src/model/exceptions/FailedToCreateDocumentException';
+import { IdTakenException } from 'src/model/exceptions/IdTakenException';
+import { Email, EmailDocument } from 'src/model/schemas/email.schema';
 
 @Injectable()
 export class EmailDao {

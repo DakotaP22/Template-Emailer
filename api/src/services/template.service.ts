@@ -2,10 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import * as ejs from 'ejs';
 import { Model } from 'mongoose';
-import { AttributeNotFoundException } from 'src/exceptions/AttributeNotFoundException';
-import { DocumentNotFoundException } from 'src/exceptions/DocumentNotFoundException';
-import { IdTakenException } from 'src/exceptions/IdTakenException';
-import { Template, TemplateDocument } from 'src/schemas/template.schema';
+import { AttributeNotFoundException } from 'src/model/exceptions/AttributeNotFoundException';
+import { DocumentNotFoundException } from 'src/model/exceptions/DocumentNotFoundException';
+import { FailedToRenderException } from 'src/model/exceptions/FailedToRenderException';
+import { IdTakenException } from 'src/model/exceptions/IdTakenException';
+import { Template, TemplateDocument } from 'src/model/schemas/template.schema';
 
 @Injectable()
 export class TemplateService {
@@ -37,7 +38,11 @@ export class TemplateService {
   }
 
   async renderTemplate(id: string, data: any): Promise<[string, string]> {
-    const template: Template = await this.getTemplate(id);
-    return [template.subject, ejs.render(template.template, data)];
+    try {
+      const template: Template = await this.getTemplate(id);
+      return [template.subject, ejs.render(template.template, data)];
+    } catch (err) {
+      throw new FailedToRenderException();
+    }
   }
 }
